@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erick Lemein — Hospitality Technology Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════ */
+:root {
+  --cream: #F5F0E8;
+  --cream2: #EDE6D6;
+  --dark: #1A1612;
+  --dark2: #252018;
+  --brown: #5C4A32;
+  --gold: #C9A84C;
+  --gold2: #E8C97A;
+  --rust: #8B3A2A;
+  --text: #2C2416;
+  --muted: #7A6E5E;
+  --border: rgba(92,74,50,0.15);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════════ */
+* { cursor: none !important; }
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, width 0.2s, height 0.2s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.25s ease;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(245,240,232,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+nav.scrolled { padding: 16px 60px; }
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--dark);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 100%;
+  height: 1px;
+  background: var(--gold);
+  transition: right 0.3s;
+}
+.nav-links a:hover { color: var(--dark); }
+.nav-links a:hover::after { right: 0; }
+
+.nav-cta {
+  background: var(--dark);
+  color: var(--cream) !important;
+  padding: 10px 24px;
+  border-radius: 2px;
+  font-size: 12px !important;
+  letter-spacing: 2px !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+.nav-cta:hover { background: var(--gold) !important; color: var(--dark) !important; }
+.nav-cta::after { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 32px;
+  animation: fadeUp 0.8s ease forwards;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--cream);
+  letter-spacing: -1.5px;
+  animation: fadeUp 0.8s 0.1s ease forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold2);
+}
+
+.hero-subtitle {
+  margin-top: 28px;
+  font-size: 16px;
+  color: rgba(245,240,232,0.55);
+  line-height: 1.7;
+  max-width: 380px;
+  font-weight: 300;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 52px;
+  animation: fadeUp 0.8s 0.3s ease forwards;
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  margin-top: 6px;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  animation: fadeUp 0.8s 0.4s ease forwards;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+  padding: 16px 36px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+.btn-outline {
+  border: 1px solid rgba(245,240,232,0.2);
+  color: var(--cream);
+  padding: 16px 36px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-right {
+  background: var(--cream2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 140px 60px 80px;
+  position: relative;
+}
+
+.hero-avatar-wrap {
+  position: relative;
+  animation: fadeUp 0.8s 0.3s ease forwards;
+}
+.hero-avatar {
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brown), var(--dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--gold);
+  border: 6px solid var(--cream);
+  box-shadow: 0 24px 80px rgba(92,74,50,0.25);
+  position: relative;
+  z-index: 1;
+}
+.avatar-ring {
+  position: absolute;
+  top: -16px; left: -16px; right: -16px; bottom: -16px;
+  border: 1px dashed rgba(201,168,76,0.4);
+  border-radius: 50%;
+  animation: spin 20s linear infinite;
+}
+.avatar-dot {
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.floating-badge {
+  position: absolute;
+  background: var(--dark);
+  color: var(--cream);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 8px 32px rgba(26,22,18,0.2);
+  white-space: nowrap;
+  animation: float 4s ease-in-out infinite;
+}
+.badge-1 { top: 20px; right: -60px; animation-delay: 0s; }
+.badge-2 { bottom: 40px; left: -80px; animation-delay: 1.5s; }
+.badge-1 span, .badge-2 span { color: var(--gold); font-weight: 600; }
+
+.hero-scrollhint {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: fadeUp 1s 0.8s ease forwards;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   ABOUT / PHILOSOPHY STRIP
+═══════════════════════════════════════════ */
+.strip {
+  background: var(--gold);
+  overflow: hidden;
+  padding: 20px 0;
+  white-space: nowrap;
+  border-top: 1px solid rgba(92,74,50,0.1);
+}
+.strip-inner {
+  display: inline-flex;
+  gap: 60px;
+  animation: marquee 25s linear infinite;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+.strip-dot { color: var(--rust); }
+
+/* ═══════════════════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════════════════ */
+section { padding: 120px 60px; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--dark);
+  max-width: 700px;
+}
+.section-title em { font-style: italic; color: var(--rust); }
+
+/* ═══════════════════════════════════════════
+   EXPERTISE
+═══════════════════════════════════════════ */
+#expertise { background: var(--dark2); }
+
+#expertise .section-title { color: var(--cream); }
+#expertise .section-label { color: var(--gold); }
+#expertise .section-label::before { background: var(--gold); }
+
+.expertise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.expertise-intro {
+  max-width: 460px;
+  font-size: 15px;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+.software-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.software-card {
+  background: var(--dark);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  group: true;
+}
+.software-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; top: 100%;
+  background: linear-gradient(to top, rgba(201,168,76,0.08), transparent);
+  transition: top 0.4s;
+}
+.software-card:hover::before { top: 0; }
+.software-card:hover { background: #1F1A14; }
+
+.sw-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+.sw-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.sw-category {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.sw-desc {
+  font-size: 13px;
+  color: rgba(245,240,232,0.4);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.proficiency-bar {
+  margin-top: 20px;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.proficiency-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 2px;
+  transition: width 1.5s ease;
+}
+.proficiency-label {
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════
+   EXPERIENCE
+═══════════════════════════════════════════ */
+#experience { background: var(--cream); }
+
+.timeline {
+  margin-top: 64px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 200px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 48px;
+  padding: 0 0 56px;
+  position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+
+.tl-year {
+  text-align: right;
+  padding-top: 4px;
+}
+.tl-period {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.tl-duration {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.tl-dot {
+  position: absolute;
+  left: 192px;
+  top: 8px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  z-index: 1;
+}
+.tl-dot.current { background: var(--gold); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+
+.tl-content { padding-left: 0; }
+.tl-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.tl-company {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.tl-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 560px;
+}
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tl-tag {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+#services { background: var(--cream2); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.service-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(92,74,50,0.12);
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+  transform-origin: left;
+}
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: rgba(92,74,50,0.06);
+  line-height: 1;
+  position: absolute;
+  top: 20px; right: 24px;
+}
+.service-icon { font-size: 32px; margin-bottom: 20px; }
+.service-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.service-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.service-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.service-list li {
+  font-size: 13px;
+  color: var(--brown);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.service-list li::before {
+  content: '→';
+  color: var(--gold);
+  font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   CERTIFICATIONS & SKILLS
+═══════════════════════════════════════════ */
+#skills { background: var(--dark); }
+#skills .section-title { color: var(--cream); }
+#skills .section-label { color: var(--gold); }
+#skills .section-label::before { background: var(--gold); }
+
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 64px;
+  align-items: start;
+}
+
+.cert-list { display: flex; flex-direction: column; gap: 16px; }
+.cert-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s;
+}
+.cert-card:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+.cert-badge {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(201,168,76,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.cert-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 3px;
+}
+.cert-issuer {
+  font-size: 12px;
+  color: rgba(245,240,232,0.4);
+  letter-spacing: 0.5px;
+}
+.cert-year {
+  margin-left: auto;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.skills-col-title {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  margin-bottom: 28px;
+}
+
+.skill-rows { display: flex; flex-direction: column; gap: 20px; }
+.skill-row {}
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.skill-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+}
+.skill-pct {
+  font-size: 12px;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+.skill-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 3px;
+  transition: width 1.5s ease;
+}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIAL
+═══════════════════════════════════════════ */
+#testimonials { background: var(--cream); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.testi-card {
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 32px;
+  position: relative;
+  transition: all 0.3s;
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(92,74,50,0.1); }
+.testi-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  color: var(--gold);
+  line-height: 0.6;
+  margin-bottom: 20px;
+  display: block;
+  opacity: 0.6;
+}
+.testi-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brown), var(--dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.testi-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.testi-role { font-size: 12px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+#contact {
+  background: var(--dark2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.contact-left {
+  padding: 120px 80px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+.contact-left::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+}
+
+.contact-left .section-title { color: var(--cream); max-width: 360px; }
+.contact-left .section-label { color: var(--gold); }
+.contact-left .section-label::before { background: var(--gold); }
+
+.contact-info { margin-top: 48px; display: flex; flex-direction: column; gap: 28px; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ci-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ci-label { font-size: 11px; color: rgba(245,240,232,0.35); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.ci-value { font-size: 15px; color: var(--cream); font-weight: 500; }
+
+.contact-right {
+  padding: 120px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.form-input, .form-textarea {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--dark);
+  font-family: 'Outfit', sans-serif;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 18px 40px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.3s;
+  align-self: flex-start;
+}
+.form-submit:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: gap;
+  gap: 16px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+}
+.footer-logo span { color: var(--gold); }
+.footer-copy {
+  font-size: 12px;
+  color: rgba(245,240,232,0.25);
+  letter-spacing: 0.5px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 12px;
+  color: rgba(245,240,232,0.3);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.hidden {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+}
+.reveal.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 100px 32px 60px; }
+  .hero-right { display: none; }
+  section { padding: 80px 24px; }
+  .software-grid { grid-template-columns: 1fr; }
+  .timeline::before { left: 0; }
+  .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+  .tl-year { text-align: left; }
+  .tl-dot { left: -8px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; gap: 48px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  #contact { grid-template-columns: 1fr; }
+  .contact-left, .contact-right { padding: 60px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+  .hero-stats { gap: 24px; }
+  .badge-1, .badge-2 { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">E<span>.</span>Lemein</a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Hospitality Technology Specialist</div>
+    <h1>Erick<br><em>Lemein</em></h1>
+    <p class="hero-subtitle">6 years of hands-on expertise delivering seamless POS implementations, printer configurations, and menu management across luxury hotels and high-volume F&B operations.</p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Properties Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">8</div>
+        <div class="stat-label">POS Platforms</div>
+      </div>
+    </div>
+
+    <div class="hero-cta-group">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#expertise" class="btn-outline">View Expertise</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-avatar-wrap">
+      <div class="avatar-ring"><div class="avatar-dot"></div></div>
+      <div class="hero-avatar">EL</div>
+
+      <div class="floating-badge badge-1">
+        <span>Oracle MICROS</span> Certified
+      </div>
+      <div class="floating-badge badge-2">
+        🏨 <span>Luxury</span> Hospitality POS
+      </div>
+    </div>
+
+    <div class="hero-scrollhint">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MARQUEE STRIP ══════════════ -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>Oracle MICROS Simphony</span><span class="strip-dot">✦</span>
+    <span>Menu Configuration</span><span class="strip-dot">✦</span>
+    <span>Printer Setup & Routing</span><span class="strip-dot">✦</span>
+    <span>Opera PMS Integration</span><span class="strip-dot">✦</span>
+    <span>EMC Administration</span><span class="strip-dot">✦</span>
+    <span>KDS Management</span><span class="strip-dot">✦</span>
+    <span>Revenue Center Config</span><span class="strip-dot">✦</span>
+    <span>Lightspeed Restaurant</span><span class="strip-dot">✦</span>
+    <span>Oracle MICROS Simphony</span><span class="strip-dot">✦</span>
+    <span>Menu Configuration</span><span class="strip-dot">✦</span>
+    <span>Printer Setup & Routing</span><span class="strip-dot">✦</span>
+    <span>Opera PMS Integration</span><span class="strip-dot">✦</span>
+    <span>EMC Administration</span><span class="strip-dot">✦</span>
+    <span>KDS Management</span><span class="strip-dot">✦</span>
+    <span>Revenue Center Config</span><span class="strip-dot">✦</span>
+    <span>Lightspeed Restaurant</span><span class="strip-dot">✦</span>
+  </div>
+</div>
+
+<!-- ══════════════ EXPERTISE ══════════════ -->
+<section id="expertise">
+  <div class="expertise-header reveal">
+    <div>
+      <div class="section-label">Core Expertise</div>
+      <div class="section-title">Software I <em>Master</em></div>
+      <p class="expertise-intro">Deep, hands-on proficiency across the leading hospitality POS and property management platforms used by 4 and 5-star properties worldwide.</p>
+    </div>
+  </div>
+
+  <div class="software-grid reveal">
+
+    <div class="software-card">
+      <span class="sw-icon">🔴</span>
+      <div class="sw-category">POS Platform — Primary</div>
+      <div class="sw-name">Oracle MICROS Simphony</div>
+      <div class="sw-desc">Full EMC administration including printer/order device setup, print class routing, menu item configuration, page design, Revenue Center management, and CAPS resilience management.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:97%"></div></div>
+      <div class="proficiency-label">Expert — 97%</div>
+    </div>
+
+    <div class="software-card">
+      <span class="sw-icon">🏨</span>
+      <div class="sw-category">Property Management</div>
+      <div class="sw-name">Oracle Opera PMS</div>
+      <div class="sw-desc">Integration management between Opera and Simphony for seamless room charging, guest profile synchronization, and folio management in hotel environments.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:85%"></div></div>
+      <div class="proficiency-label">Advanced — 85%</div>
+    </div>
+
+    <div class="software-card">
+      <span class="sw-icon">⚡</span>
+      <div class="sw-category">POS Platform</div>
+      <div class="sw-name">Lightspeed Restaurant</div>
+      <div class="sw-desc">Configuration, menu building, floor plan management, and reporting setup for restaurant and bar operations. Cloud-based POS administration and staff training.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:82%"></div></div>
+      <div class="proficiency-label">Advanced — 82%</div>
+    </div>
+
+    <div class="software-card">
+      <span class="sw-icon">📱</span>
+      <div class="sw-category">POS Platform</div>
+      <div class="sw-name">Toast POS</div>
+      <div class="sw-desc">Full menu management, online ordering integration, kitchen display configuration, and team permissions setup for independent and chain restaurant clients.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:78%"></div></div>
+      <div class="proficiency-label">Proficient — 78%</div>
+    </div>
+
+    <div class="software-card">
+      <span class="sw-icon">🟦</span>
+      <div class="sw-category">POS Platform</div>
+      <div class="sw-name">Square for Restaurants</div>
+      <div class="sw-desc">Setup, device management, menu configuration, and reporting for small to mid-size F&B operations. Integration with inventory and payroll tools.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:75%"></div></div>
+      <div class="proficiency-label">Proficient — 75%</div>
+    </div>
+
+    <div class="software-card">
+      <span class="sw-icon">📊</span>
+      <div class="sw-category">Reporting & Analytics</div>
+      <div class="sw-name">Simphony Report & Analytics</div>
+      <div class="sw-desc">Product mix analysis, financial summaries, void and comp reporting, labor tracking, and custom report configuration for F&B managers and owners.</div>
+      <div class="proficiency-bar"><div class="proficiency-fill" style="width:90%"></div></div>
+      <div class="proficiency-label">Expert — 90%</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ EXPERIENCE ══════════════ -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Career History</div>
+    <div class="section-title">Six Years of <em>Proven</em> Delivery</div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="tl-year">
+        <div class="tl-period">2022 – Present</div>
+        <div class="tl-duration">3 Years</div>
+      </div>
+      <div class="tl-dot current"></div>
+      <div class="tl-content">
+        <div class="tl-role">Senior POS Systems Specialist</div>
+        <div class="tl-company">Emara Ole Sereni Hotel — Nairobi</div>
+        <div class="tl-desc">Lead configuration and ongoing management of Oracle MICROS Simphony across the property's multiple F&B outlets. Responsible for all EMC administration including new outlet setups, printer routing configuration, menu engineering implementation, and staff training. Manage Opera-Simphony integration ensuring seamless room charge posting for hotel guests.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Oracle Simphony</span>
+          <span class="tl-tag">EMC Administration</span>
+          <span class="tl-tag">Opera PMS</span>
+          <span class="tl-tag">Print Routing</span>
+          <span class="tl-tag">Menu Config</span>
+          <span class="tl-tag">Staff Training</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-year">
+        <div class="tl-period">2021 – 2022</div>
+        <div class="tl-duration">1 Year</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-role">POS Systems Specialist</div>
+        <div class="tl-company">Vineyard Hotel — Cape Town</div>
+        <div class="tl-desc">Managed end-to-end Simphony POS operations for the hotel's restaurant and bar outlets. Delivered menu item configuration, printer order device setup, and kitchen display system management. Supported the Opera PMS integration for smooth guest billing and room charge posting.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Oracle Simphony</span>
+          <span class="tl-tag">KDS Management</span>
+          <span class="tl-tag">Menu Engineering</span>
+          <span class="tl-tag">Opera Integration</span>
+          <span class="tl-tag">Order Routing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-year">
+        <div class="tl-period">2019 – 2021</div>
+        <div class="tl-duration">2 Years</div>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-role">POS Support Technician</div>
+        <div class="tl-company">Eka Hotel — Nairobi</div>
+        <div class="tl-desc">Front-line POS support for the hotel's F&B operations running Oracle MICROS systems. Resolved printer connectivity issues, workstation errors, and menu discrepancies under live service pressure. Built strong foundation in CAPS troubleshooting, real-time operational support, and EMC configuration.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Technical Support</span>
+          <span class="tl-tag">CAPS Troubleshooting</span>
+          <span class="tl-tag">MICROS</span>
+          <span class="tl-tag">Printer Config</span>
+          <span class="tl-tag">EMC</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">What I Offer</div>
+    <div class="section-title">Services I <em>Provide</em></div>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">POS System Configuration</div>
+      <div class="service-desc">Complete setup and configuration of your POS system from scratch, or optimization of your existing setup for peak efficiency.</div>
+      <ul class="service-list">
+        <li>Printer & order device setup</li>
+        <li>Print class routing configuration</li>
+        <li>Revenue Center (RVC) setup</li>
+        <li>KDS configuration</li>
+        <li>Database deployment & testing</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <div class="service-icon">🍽️</div>
+      <div class="service-title">Menu Management</div>
+      <div class="service-desc">Professional menu build-out, modification, and ongoing maintenance tailored to your F&B operation's needs and schedule.</div>
+      <ul class="service-list">
+        <li>Menu item creation & editing</li>
+        <li>Price updates with effective dates</li>
+        <li>Menu level & happy hour setup</li>
+        <li>Screen layout & button design</li>
+        <li>Tax class & modifier setup</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <div class="service-icon">🔗</div>
+      <div class="service-title">PMS Integration</div>
+      <div class="service-desc">Seamless connection between your POS and Property Management System for smooth room charging and guest billing.</div>
+      <ul class="service-list">
+        <li>Opera PMS ↔ Simphony integration</li>
+        <li>Room charge configuration</li>
+        <li>Guest profile synchronization</li>
+        <li>Folio management setup</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <div class="service-icon">🛠️</div>
+      <div class="service-title">Support & Troubleshooting</div>
+      <div class="service-desc">Rapid remote or on-site support to resolve POS issues before they impact your service. Available for ongoing retainer arrangements.</div>
+      <ul class="service-list">
+        <li>Printer & connectivity issues</li>
+        <li>CAPS offline troubleshooting</li>
+        <li>Workstation error resolution</li>
+        <li>Remote EMC access & fixes</li>
+        <li>Staff retraining & guidance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ SKILLS ══════════════ -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">Technical Proficiency</div>
+    <div class="section-title" style="color:var(--cream);">Skills & <em style="color:var(--gold2)">Credentials</em></div>
+  </div>
+
+  <div class="skills-layout">
+    <div>
+      <div class="skills-col-title">Certifications & Training</div>
+      <div class="cert-list reveal">
+        <div class="cert-card">
+          <div class="cert-badge">🔴</div>
+          <div>
+            <div class="cert-name">Oracle MICROS Simphony Certified</div>
+            <div class="cert-issuer">Oracle University</div>
+          </div>
+          <div class="cert-year">2022</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🏨</div>
+          <div>
+            <div class="cert-name">Oracle Hospitality — Opera PMS</div>
+            <div class="cert-issuer">Oracle University</div>
+          </div>
+          <div class="cert-year">2021</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">⚡</div>
+          <div>
+            <div class="cert-name">Lightspeed Certified Partner</div>
+            <div class="cert-issuer">Lightspeed Commerce</div>
+          </div>
+          <div class="cert-year">2021</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🌐</div>
+          <div>
+            <div class="cert-name">CompTIA Network+ (N+)</div>
+            <div class="cert-issuer">CompTIA</div>
+          </div>
+          <div class="cert-year">2020</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🔒</div>
+          <div>
+            <div class="cert-name">PCI DSS Compliance Training</div>
+            <div class="cert-issuer">PCI Security Standards Council</div>
+          </div>
+          <div class="cert-year">2020</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="skills-col-title reveal">Technical Skills</div>
+      <div class="skill-rows reveal">
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Oracle MICROS Simphony EMC</span><span class="skill-pct">97%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:97%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Printer & Network Configuration</span><span class="skill-pct">93%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Menu Engineering & Configuration</span><span class="skill-pct">95%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Opera PMS Integration</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Lightspeed / Toast POS</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">KDS (Kitchen Display Systems)</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">POS Troubleshooting & Support</span><span class="skill-pct">94%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:94%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Report & Analytics (MyMicros)</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section id="testimonials">
+  <div class="reveal">
+    <div class="section-label">Client References</div>
+    <div class="section-title">Clients I've <em>Worked With</em></div>
+  </div>
+
+  <div class="testimonials-grid">
+
+    <div class="testi-card reveal">
+      <div class="testi-author" style="border-top:none; padding-top:0;">
+        <div class="testi-avatar" style="width:56px;height:56px;font-size:20px;">EKA</div>
+        <div>
+          <div class="testi-name" style="font-size:16px;">Eka Hotel</div>
+          <div class="testi-role" style="font-size:13px; margin-top:4px;">Nairobi, Kenya</div>
+        </div>
+      </div>
+      <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+        <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px;">Key Contacts</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">A</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">F&B Manager</div>
+              <div style="font-size:12px;color:var(--muted);">Food & Beverage Department</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">B</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">IT Systems Manager</div>
+              <div style="font-size:12px;color:var(--muted);">Technology Department</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-author" style="border-top:none; padding-top:0;">
+        <div class="testi-avatar" style="width:56px;height:56px;font-size:14px;font-weight:800;">OLE</div>
+        <div>
+          <div class="testi-name" style="font-size:16px;">Emara Ole Sereni</div>
+          <div class="testi-role" style="font-size:13px; margin-top:4px;">Nairobi, Kenya</div>
+        </div>
+      </div>
+      <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+        <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px;">Key Contacts</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">C</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">Operations Manager</div>
+              <div style="font-size:12px;color:var(--muted);">Hotel Operations</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">D</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">F&B Director</div>
+              <div style="font-size:12px;color:var(--muted);">Food & Beverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-author" style="border-top:none; padding-top:0;">
+        <div class="testi-avatar" style="width:56px;height:56px;font-size:14px;font-weight:800;">VYD</div>
+        <div>
+          <div class="testi-name" style="font-size:16px;">Vineyard Hotel</div>
+          <div class="testi-role" style="font-size:13px; margin-top:4px;">Cape Town, South Africa</div>
+        </div>
+      </div>
+      <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+        <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px;">Key Contacts</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">E</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">Restaurant Manager</div>
+              <div style="font-size:12px;color:var(--muted);">Dining Operations</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--dark));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;">F</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--dark);">IT & Systems Lead</div>
+              <div style="font-size:12px;color:var(--muted);">Technology Department</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="section-label">Let's Work Together</div>
+    <div class="section-title">Ready to <em>Connect?</em></div>
+
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="ci-icon">📧</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="701311001904111c110304021f444530171d11191c5e131f1d">[email&#160;protected]</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📱</div>
+        <div>
+          <div class="ci-label">Phone / WhatsApp</div>
+          <div class="ci-value">+254 745 749 508</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Location</div>
+          <div class="ci-value">Available Remotely & On-Site</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">⏱️</div>
+        <div>
+          <div class="ci-label">Response Time</div>
+          <div class="ci-value">Within 24 Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right reveal">
+    <div class="section-label" style="color:var(--gold)">Send a Message</div>
+    <div style="margin-bottom:32px; font-size:15px; color:var(--muted); line-height:1.7;">Tell me about your property, the software you use, and what you need help with.</div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="john@hotel.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Property / Company</label>
+        <input type="text" class="form-input" placeholder="Grand Hotel & Resorts">
+      </div>
+      <div class="form-group">
+        <label class="form-label">POS System in Use</label>
+        <input type="text" class="form-input" placeholder="e.g. Oracle Simphony Cloud">
+      </div>
+      <div class="form-group">
+        <label class="form-label">How Can I Help?</label>
+        <textarea class="form-textarea" placeholder="Describe what you need — printer setup, menu changes, system troubleshooting..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-logo">E<span>.</span>Lemein</div>
+  <div class="footer-copy">© 2025 Erick Lemein. Hospitality Technology Specialist.</div>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ */
+<script>
+// Custom Cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX - 5 + 'px';
+  cursor.style.top = mouseY - 5 + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX - 18) * 0.12;
+  ringY += (mouseY - ringY - 18) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .service-card, .software-card, .testi-card, .cert-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2.5)';
+    cursorRing.style.transform = 'scale(1.5)';
+    cursorRing.style.opacity = '0.3';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    cursorRing.style.transform = 'scale(1)';
+    cursorRing.style.opacity = '0.6';
+  });
+});
+
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll reveal — only hide elements below the fold, rest stay visible
+window.addEventListener('load', () => {
+  const revealEls = document.querySelectorAll('.reveal');
+  revealEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top > window.innerHeight) {
+      el.classList.add('hidden');
+    }
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.remove('hidden');
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
+});
+
+// Form submit
+function handleSubmit() {
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background = '#27ae60';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 3000);
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
