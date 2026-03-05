@@ -705,6 +705,161 @@
       text-align: right;
     }
 
+    /* DBOT SECTION */
+    #dbot {
+      background: var(--darker);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dbot-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .dbot-intro {
+      margin-bottom: 50px;
+    }
+
+    .dbot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .dbot-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dbot-card:hover {
+      border-color: var(--blue-light);
+      transform: translateY(-4px);
+    }
+
+    .dbot-card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0,71,255,0.12);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .dbot-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+
+    .dbot-card p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .dbot-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin-top: 6px;
+    }
+
+    .dbot-card-link:hover { color: var(--white); }
+    .dbot-card-link::after { content: '→'; }
+
+    .deriv-login-banner {
+      background: linear-gradient(135deg, rgba(255,0,30,0.12) 0%, rgba(0,71,255,0.12) 100%);
+      border: 1px solid rgba(255,0,30,0.3);
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .deriv-login-banner p {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .deriv-login-banner p span {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .btn-deriv {
+      background: #ff444f;
+      color: #fff;
+      padding: 14px 28px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .btn-deriv:hover { background: #ff1a26; transform: translateY(-2px); }
+
+    .dbot-cta-banner {
+      background: linear-gradient(135deg, rgba(0,71,255,0.15) 0%, rgba(224,0,27,0.1) 100%);
+      border: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    }
+
+    .dbot-cta-banner h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .dbot-cta-banner p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .dbot-grid { grid-template-columns: 1fr; }
+      .dbot-cta-banner { flex-direction: column; text-align: center; }
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -743,6 +898,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#charts">Markets</a></li>
     <li><a href="#copy-trading">Copy Trading</a></li>
+    <li><a href="#dbot">DBot</a></li>
     <li><a href="#copy-trading" class="nav-cta">Get Started</a></li>
   </ul>
 </nav>
@@ -973,6 +1129,56 @@
   </div>
 </section>
 
+<!-- DBOT SECTION -->
+<section id="dbot">
+  <div class="dbot-inner">
+    <div class="dbot-intro">
+      <span class="section-tag">// Automated Trading</span>
+      <h2 class="section-title">TRADE SMARTER<br/>WITH DERIV BOTS</h2>
+      <p class="section-desc">Access Deriv's powerful suite of automated trading tools — from drag-and-drop bot builders to ready-made strategies. No coding required.</p>
+    </div>
+
+    <!-- Login with Deriv Banner -->
+    <div class="deriv-login-banner">
+      <p>🔐 <span>New to Deriv?</span> Create a free account and start trading with bots — our platform earns commission on every trade you make at no extra cost to you.</p>
+      <a href="https://oauth.deriv.com/oauth2/authorize?app_id=32CzRMBWg8msrEpKtoMLT&l=EN&brand=deriv" target="_blank" class="btn-deriv">Login / Sign Up with Deriv</a>
+    </div>
+
+    <div class="dbot-grid">
+
+      <div class="dbot-card">
+        <div class="dbot-card-icon">🤖</div>
+        <h3>DBot</h3>
+        <p>Build your own trading bot using a visual drag-and-drop interface. Choose from ready-made strategies or create custom ones from scratch — no coding needed.</p>
+        <a href="https://oauth.deriv.com/oauth2/authorize?app_id=32CzRMBWg8msrEpKtoMLT&l=EN&brand=deriv&redirect_uri=https://dbot.deriv.com" target="_blank" class="dbot-card-link">Launch DBot</a>
+      </div>
+
+      <div class="dbot-card">
+        <div class="dbot-card-icon">📈</div>
+        <h3>SmartTrader</h3>
+        <p>Trade rise/fall, digits, touch and other contract types on Deriv's classic platform. Simple, fast, and reliable for all experience levels.</p>
+        <a href="https://oauth.deriv.com/oauth2/authorize?app_id=32CzRMBWg8msrEpKtoMLT&l=EN&brand=deriv&redirect_uri=https://smarttrader.deriv.com" target="_blank" class="dbot-card-link">Open SmartTrader</a>
+      </div>
+
+      <div class="dbot-card">
+        <div class="dbot-card-icon">⚡</div>
+        <h3>Deriv Trader</h3>
+        <p>Trade CFDs, multipliers, and accumulators on forex, synthetics, stocks and more. Advanced charting with professional-grade execution.</p>
+        <a href="https://oauth.deriv.com/oauth2/authorize?app_id=32CzRMBWg8msrEpKtoMLT&l=EN&brand=deriv&redirect_uri=https://app.deriv.com" target="_blank" class="dbot-card-link">Open Deriv App</a>
+      </div>
+
+    </div>
+
+    <div class="dbot-cta-banner">
+      <div>
+        <h3>READY-MADE BOTS AVAILABLE</h3>
+        <p>Access pre-built, tested trading bots on DBot — load a strategy in seconds and start trading automatically on Deriv's synthetic & forex markets.</p>
+      </div>
+      <a href="https://oauth.deriv.com/oauth2/authorize?app_id=32CzRMBWg8msrEpKtoMLT&l=EN&brand=deriv&redirect_uri=https://dbot.deriv.com" target="_blank" class="btn-primary" style="white-space:nowrap;">Launch DBot Now</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -986,6 +1192,7 @@
         <li><a href="#about">About Us</a></li>
         <li><a href="#charts">Live Markets</a></li>
         <li><a href="#copy-trading">Copy Trading</a></li>
+        <li><a href="#dbot">DBot & Platforms</a></li>
         <li><a href="#">Our Traders</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
