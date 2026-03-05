@@ -107,7 +107,7 @@
       justify-content: center;
       flex-direction: column;
       text-align: center;
-      padding: 120px 40px 80px;
+      padding: 160px 40px 80px;
       position: relative;
       overflow: hidden;
     }
@@ -427,11 +427,38 @@
       box-shadow: 0 0 6px var(--blue);
     }
 
-    .chart-card iframe {
-      display: block;
+    .chart-card .tradingview-widget-container {
       width: 100%;
-      height: 280px;
+      height: 320px;
+      position: relative;
+    }
+
+    .chart-card .tradingview-widget-container__widget {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
+    .chart-card iframe {
+      width: 100%;
+      height: 320px;
       border: none;
+      display: block;
+    }
+
+    /* TICKER TAPE */
+    .ticker-wrap {
+      position: fixed;
+      top: 73px;
+      left: 0; right: 0;
+      z-index: 99;
+      border-bottom: 1px solid var(--border);
+      background: rgba(2,8,20,0.97);
+    }
+
+    .ticker-wrap .tradingview-widget-container {
+      height: 46px;
     }
 
     /* COPY TRADING */
@@ -720,6 +747,34 @@
   </ul>
 </nav>
 
+<!-- TICKER TAPE -->
+<div class="ticker-wrap">
+  <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tv_ticker&symbol=FX%3AEURUSD&interval=D&hidesidetoolbar=1&hidetoptoolbar=1&theme=dark&style=1&locale=en&withdateranges=0&save_image=0" style="display:none"></iframe>
+  <div class="tradingview-widget-container" style="height:46px;">
+    <div class="tradingview-widget-container__widget" style="height:46px;"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "FX:EURUSD", "title": "EUR/USD" },
+        { "proName": "FX:GBPUSD", "title": "GBP/USD" },
+        { "proName": "FX:USDJPY", "title": "USD/JPY" },
+        { "proName": "FX:USDCHF", "title": "USD/CHF" },
+        { "proName": "FX:AUDUSD", "title": "AUD/USD" },
+        { "proName": "FX:USDCAD", "title": "USD/CAD" },
+        { "proName": "TVC:GOLD",  "title": "Gold" },
+        { "proName": "TVC:SILVER","title": "Silver" },
+        { "proName": "BINANCE:BTCUSDT","title": "BTC/USDT" }
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-glow"></div>
@@ -757,207 +812,4 @@
   </div>
   <div class="stat-item">
     <span class="stat-num">38<span class="accent">+</span></span>
-    <span class="stat-label">Currency Pairs</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div>
-      <span class="section-tag">// About Astro Inc</span>
-      <h2 class="section-title">TRADING<br/>INTELLIGENCE<br/>REDEFINED</h2>
-      <p class="section-desc">Founded over 6 years ago, Astro Inc was built on a single principle — that smart, data-driven trading should be accessible to everyone. Our team of elite analysts and traders operate across forex, commodities, and indices markets 24 hours a day.</p>
-      <ul class="feature-list" style="margin-top:28px;">
-        <li>Regulated & Compliant</li>
-        <li>24/7 Market Coverage</li>
-        <li>AI-Powered Analytics</li>
-        <li>Institutional-Grade Tools</li>
-        <li>Real-Time Execution</li>
-        <li>Dedicated Support</li>
-      </ul>
-    </div>
-    <div class="about-visual">
-      <div class="years-badge">
-        <span class="num">6+</span>
-        <span class="txt">Years<br/>Expert</span>
-      </div>
-      <div class="about-box">
-        <p>At Astro Inc, we combine advanced algorithmic strategies with human expertise. Our professional traders bring decades of combined experience from top financial institutions worldwide.</p>
-        <p>We specialize in major and exotic currency pairs, offering transparent, risk-managed copy trading solutions for both novice and experienced investors. Every position is monitored in real-time with strict stop-loss protocols.</p>
-        <p>Our mission: to give every investor access to institutional-level trading — without the institutional barriers.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHARTS -->
-<section>
-  <div id="charts">
-    <div class="charts-header">
-      <span class="section-tag">// Live Markets</span>
-      <h2 class="section-title">MAJOR CURRENCY PAIRS</h2>
-      <p class="section-desc">Real-time charts powered by TradingView. Monitor market movements as they happen.</p>
-    </div>
-    <div class="charts-grid">
-
-      <div class="chart-card">
-        <div class="chart-label">EUR / USD</div>
-        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tv1&symbol=EURUSD&interval=60&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&toolbarbg=020814&studies=[]&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=0&showpopupbutton=0&studies_overrides={}&overrides={}&enabled_features=[]&disabled_features=[]&locale=en" allowtransparency="true" allowfullscreen></iframe>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-label">GBP / USD</div>
-        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tv2&symbol=GBPUSD&interval=60&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&toolbarbg=020814&studies=[]&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=0&showpopupbutton=0&locale=en" allowtransparency="true" allowfullscreen></iframe>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-label">USD / JPY</div>
-        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tv3&symbol=USDJPY&interval=60&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&toolbarbg=020814&studies=[]&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=0&showpopupbutton=0&locale=en" allowtransparency="true" allowfullscreen></iframe>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-label">XAU / USD &nbsp;(GOLD)</div>
-        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tv4&symbol=XAUUSD&interval=60&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&toolbarbg=020814&studies=[]&theme=dark&style=1&timezone=Etc%2FUTC&withdateranges=0&showpopupbutton=0&locale=en" allowtransparency="true" allowfullscreen></iframe>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- COPY TRADING -->
-<section id="copy-trading">
-  <div class="copy-inner">
-    <div class="copy-info">
-      <span class="section-tag">// Copy Trading</span>
-      <h2 class="section-title">COPY OUR<br/>BEST TRADERS</h2>
-      <p class="section-desc">Connect your account and automatically mirror the trades of our verified, top-performing traders. No experience required.</p>
-
-      <h3>How It Works</h3>
-      <ol class="steps">
-        <li>Create your free Astro Inc account using the form</li>
-        <li>Choose a trading plan that matches your goals</li>
-        <li>Select a master trader to copy based on performance stats</li>
-        <li>Connect your broker account or use ours</li>
-        <li>Sit back — trades execute automatically in real-time</li>
-      </ol>
-
-      <h3>Why Astro Inc?</h3>
-      <p>Our traders are verified with 6+ years of audited performance history. Full transparency on drawdowns, win rates, and risk metrics. You stay in control — pause or stop anytime.</p>
-    </div>
-
-    <div>
-      <div class="form-card">
-        <p class="form-title">CREATE YOUR ACCOUNT</p>
-        <p class="form-subtitle">Join thousands of investors already copying our trades</p>
-
-        <form id="signup-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Doe" required />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@email.com" required />
-          </div>
-
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="+1 000 000 0000" />
-          </div>
-
-          <div class="form-group">
-            <label>Country</label>
-            <select required>
-              <option value="" disabled selected>Select your country</option>
-              <option>United States</option>
-              <option>United Kingdom</option>
-              <option>South Africa</option>
-              <option>Nigeria</option>
-              <option>Canada</option>
-              <option>Australia</option>
-              <option>Germany</option>
-              <option>France</option>
-              <option>UAE</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Trading Plan</label>
-            <select required>
-              <option value="" disabled selected>Select a plan</option>
-              <option>Starter — $500 min. deposit</option>
-              <option>Growth — $2,000 min. deposit</option>
-              <option>Pro — $10,000 min. deposit</option>
-              <option>Elite — $50,000+ min. deposit</option>
-            </select>
-          </div>
-
-          <div class="form-check">
-            <input type="checkbox" required />
-            <span>I agree to the <a href="#" style="color:var(--blue-light)">Terms of Service</a> and understand that trading involves risk of capital loss.</span>
-          </div>
-
-          <button type="submit" class="btn-submit">OPEN FREE ACCOUNT</button>
-        </form>
-
-        <div class="success-msg" id="success-msg">
-          ✓ ACCOUNT REQUEST RECEIVED<br/>
-          <span style="font-family:Rajdhani;font-size:0.95rem;color:var(--text-dim);letter-spacing:1px;">Our team will contact you within 24 hours.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo">ASTRO<span style="color:var(--red)">.</span>INC</div>
-      <p>Professional forex and asset trading since 2018. Empowering investors worldwide with transparent, expert-led copy trading solutions.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#charts">Live Markets</a></li>
-        <li><a href="#copy-trading">Copy Trading</a></li>
-        <li><a href="#">Our Traders</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Risk Disclosure</a></li>
-        <li><a href="#">Regulatory Info</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024 Astro Inc. All rights reserved.</p>
-    <p class="footer-disclaimer">Trading forex and financial instruments carries a high level of risk and may not be suitable for all investors. Past performance is not indicative of future results.</p>
-  </div>
-</footer>
-
-<script>
-  document.getElementById('signup-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    this.style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
-  });
-</script>
-
-</body>
-</html>
+    <s
